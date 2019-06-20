@@ -1,17 +1,17 @@
 def app1
 
 void theProcess(folder,image) {
-  echo folder
+  dir(folder){
+    sh "chmod 711 ./mvnw"
+  }
 }
 
 pipeline {
   agent any
   stages {
     stage("sample") {
-      steps {
-       
-          theProcess("AdminServer","admin-server")
-       
+      steps {       
+          theProcess("AdminServer","admin-server")      
       }
     }
   }
