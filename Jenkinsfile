@@ -1,10 +1,19 @@
 void theProcess(folder,image) {  
+  def app
   script {
-  stage("permissions") {    
+    stage("permissions") {    
       dir(folder){
         sh "chmod 711 ./mvnw"
       }    
-  }
+    }
+    stage("install") {
+      dir(folder) {
+        sh "./mvnw install"
+      }
+    }
+    stage("build") {
+      app = docker.build("ammonking/"+image)
+    }
   }
 }
 
