@@ -14,6 +14,7 @@ pipeline {
             stage("build") {
               steps {
                 dir("AdminServer") {
+                  sh "chmod 711 ./mvnw"
                   sh "./mvnw install"
                 }
               }
@@ -47,6 +48,7 @@ pipeline {
             stage("build") {
               steps {
                 dir("DiscoveryServer") {
+                  sh "chmod 711 ./mvnw"
                   sh "./mvnw install"
                 }
               }
