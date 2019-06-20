@@ -1,5 +1,5 @@
 void theProcess(folder,image) {  
-  return {
+  script {
   stage("permissions") {
     steps {
       dir(folder){
@@ -12,7 +12,11 @@ void theProcess(folder,image) {
 
 pipeline {
   agent any
-  stages {     
-      theProcess("AdminServer","admin-server")            
+  stages {    
+    stage ('automation') {
+      steps {
+        theProcess("AdminServer","admin-server")            
+      }
+    }       
   }
 }
