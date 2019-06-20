@@ -17,6 +17,7 @@ parallel(
     DiscoveryServer: { node {
     dir("DiscoveryServer"){
       sh 'pwd'
+      sh 'ls'
       /* set maven wrapper permissions */
       sh "chmod 711 ./mvnw"
     }
