@@ -15,17 +15,23 @@ node {
   }
 
   stage("Test") {
-    /* runt tests */
-    sh "./mvnw test"
+    dir("AdminServer"){
+      /* runt tests */
+      sh "./mvnw test"
+    }
   }
 
   stage("Build Project") {
-    /* build the project */
-    sh "./mvnw clean install"
+    dir("AdminServer"){
+      /* build the project */ 
+      sh "./mvnw clean install"
+    }
   }
 
   stage("Build Image") {
-    app = docker.build("ammonking/admin-server")
+    dir("AdminServer"){
+      app = docker.build("ammonking/admin-server")
+    }
   }
 
   stage("Push Image") {
