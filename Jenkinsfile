@@ -3,7 +3,7 @@ node {
     /* clone the repository */
     checkout scm    
   }
-}
+
 
 stage "fix permissions"
 parallel(
@@ -23,3 +23,4 @@ parallel(
     }
   }}
 )
+}
