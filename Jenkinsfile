@@ -45,8 +45,13 @@ pipeline {
   stages {
     stage("build") {
       parallel {
-        theThing("AdminServer","admin-server")
-        theThing("DiscoveryServer","discovery-server")
+        stage {
+          theThing("AdminServer","admin-server")
+        }
+        stage {
+          theThing("DiscoveryServer","discovery-server")
+        }
+        
       }
     }    
   }
