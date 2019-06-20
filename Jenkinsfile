@@ -16,6 +16,14 @@ void theProcess(folder,image) {
         app = docker.build("ammonking/"+image)
       }
     }
+    stage("deploy") {
+      dir(folder) {
+        docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
+          app.push("${env.BUILD_NUMBER}")
+          app.push("latest")
+       }
+      }
+    }
   }
 }
 
@@ -23,9 +31,18 @@ pipeline {
   agent any
   stages {    
     stage ('automation') {
-      steps {
-        theProcess("AdminServer","admin-server")            
-      }
+      parallel {
+        stage("AdminServer") {
+          steps {
+            theProcess("AdminServer","admin-server")     
+          }
+        }
+        stage("DiscoveryServer") {
+          steps {
+            theProcess("DiscoveryServer","discovery-server")
+          }
+        }
+      }      
     }       
   }
 }
