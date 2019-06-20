@@ -7,7 +7,9 @@ pipeline {
       steps{
         sh "cd AdminServer"
         sh "./mvnw install"
-        app = docker.build("ammonking/admin-server")    
+        script {
+          app = docker.build("ammonking/admin-server")    
+        }
       }
     }    
   }
