@@ -8,8 +8,10 @@ pipeline {
   agent any
   stages {
     stage("sample") {
-      script {
-        theProcess("AdminServer","admin-server")
+      steps {
+        script {
+          theProcess("AdminServer","admin-server")
+        }
       }
     }
   }
