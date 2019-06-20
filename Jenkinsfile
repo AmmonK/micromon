@@ -12,7 +12,7 @@ parallel(
       /* set maven wrapper permissions */
       sh "chmod 711 ./mvnw"
     }
-  }}
+  }},
     DiscoveryServer: { node {
     dir("DiscoveryServer"){
       /* set maven wrapper permissions */
