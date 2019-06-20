@@ -45,10 +45,10 @@ pipeline {
   stages {
     stage("build") {
       parallel {
-        stage {
+        stage("AdminServer") {
           theThing("AdminServer","admin-server")
         }
-        stage {
+        stage("DiscoveryServer") {
           theThing("DiscoveryServer","discovery-server")
         }
         
