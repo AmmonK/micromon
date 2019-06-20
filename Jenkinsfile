@@ -8,10 +8,10 @@ pipeline {
         stage("AdminServer") {
           agent any
           stages {
-            stage("test") {
-              dir("AdminServer") {
-                steps {
-                  sh "./mvnw test"
+            stage("test") {              
+              steps {
+                dir("AdminServer") {
+                 sh "./mvnw test"
                 }
               }
             }
@@ -21,8 +21,8 @@ pipeline {
           agent any
           stages {
             stage("test") {
-              dir("DiscoveryServer") {
-                steps {
+              steps {
+                dir("DiscoveryServer") {
                   sh "./mvnw test"
                 }
               }
