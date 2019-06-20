@@ -1,6 +1,6 @@
 def app1
 
-def theProcess(folder,image) {
+void theProcess(folder,image) {
   echo folder
 }
 
@@ -9,9 +9,9 @@ pipeline {
   stages {
     stage("sample") {
       steps {
-        script {
+       
           theProcess("AdminServer","admin-server")
-        }
+       
       }
     }
   }
