@@ -1,8 +1,10 @@
-def app1
-
-void theProcess(folder,image) {
-  dir(folder){
-    sh "chmod 711 ./mvnw"
+void theProcess(folder,image) {  
+  stage("permissions") {
+    steps {
+      dir(folder){
+        sh "chmod 711 ./mvnw"
+      }
+    }
   }
 }
 
