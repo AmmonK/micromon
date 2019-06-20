@@ -16,6 +16,22 @@ pipeline {
                 }
               }
             }
+            stage("build") {
+              steps {
+                dir("AdminServer") {
+                  sh "./mvnw install"
+                }
+              }
+            }
+            stage("build docker") {
+              steps {
+                dir("AdminServer") {
+                  script {
+                    app = docker.build("ammonking/admin-server")
+                  }
+                }
+              }
+            }
           }
         }
          stage("DiscoveryServer") {
