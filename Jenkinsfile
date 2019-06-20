@@ -10,11 +10,7 @@ void theProcess(folder,image) {
 
 pipeline {
   agent any
-  stages {
-    stage("sample") {
-      steps {       
-          theProcess("AdminServer","admin-server")      
-      }
-    }
+  stages {     
+      theProcess("AdminServer","admin-server")            
   }
 }
