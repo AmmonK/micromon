@@ -5,7 +5,7 @@ node {
   }
 
 
-stage "fix permissions"
+stage "fix permissions" {
 parallel(
   AdminServer: { node {
     dir("AdminServer"){
@@ -22,5 +22,5 @@ parallel(
       sh "chmod 711 ./mvnw"
     }
   }}
-)
+)}
 }
