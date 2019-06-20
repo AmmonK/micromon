@@ -11,7 +11,8 @@ pipeline {
             stage("test") {              
               steps {
                 dir("AdminServer") {
-                 sh "./mvnw test"
+                  sh "chmod 711 ./mvnw"
+                  sh "./mvnw test"
                 }
               }
             }
@@ -23,6 +24,7 @@ pipeline {
             stage("test") {
               steps {
                 dir("DiscoveryServer") {
+                  sh "chmod 711 ./mvnw"
                   sh "./mvnw test"
                 }
               }
