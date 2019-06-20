@@ -1,4 +1,7 @@
-def app
+def app1
+def app2
+def app3
+def app4
 
 pipeline {
   agent none
@@ -27,9 +30,21 @@ pipeline {
               steps {
                 dir("AdminServer") {
                   script {
-                    app = docker.build("ammonking/admin-server")
+                    app1 = docker.build("ammonking/admin-server")
                   }
                 }
+              }
+            }
+            stage("Push Image") {    
+              steps {
+                dir("AdminServer"){
+                  script {
+                    docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
+                      app.push("${env.BUILD_NUMBER}")
+                      app.push("latest")
+                    }
+                  }
+                }                   
               }
             }
           }
