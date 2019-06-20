@@ -11,14 +11,6 @@ pipeline {
         stage("AdminServer") {
           agent any
           stages {
-            stage("test") {              
-              steps {
-                dir("AdminServer") {
-                  sh "chmod 711 ./mvnw"
-                  sh "./mvnw test"
-                }
-              }
-            }
             stage("build") {
               steps {
                 dir("AdminServer") {
@@ -40,8 +32,8 @@ pipeline {
                 dir("AdminServer"){
                   script {
                     docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
-                      app.push("${env.BUILD_NUMBER}")
-                      app.push("latest")
+                      app1.push("${env.BUILD_NUMBER}")
+                      app1.push("latest")
                     }
                   }
                 }                   
@@ -52,14 +44,7 @@ pipeline {
          stage("DiscoveryServer") {
           agent any
           stages {
-            stage("test") {
-              steps {
-                dir("DiscoveryServer") {
-                  sh "chmod 711 ./mvnw"
-                  sh "./mvnw test"
-                }
-              }
-            }
+           
           }
         }
       }
