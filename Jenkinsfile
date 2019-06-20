@@ -42,6 +42,16 @@ pipeline {
             theProcess("DiscoveryServer","discovery-server")
           }
         }
+        stage("PokemonService") {
+          steps {
+            theProcess("PokemonService","pokemon-service")
+          }
+        }
+        stage("TrainerService") {
+          steps {
+            theProcess("TrainerService","trainer-service")
+          }
+        }
       }      
     }       
   }
