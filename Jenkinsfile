@@ -4,12 +4,13 @@ def theProcess(folder,image) {
 
 }
 
-pipeline
-agent any
-stages {
-  stage("sample") {
-    script {
-      theProcess("AdminServer","admin-server")
+pipeline {
+  agent any
+  stages {
+    stage("sample") {
+      script {
+        theProcess("AdminServer","admin-server")
+      }
     }
   }
 }
