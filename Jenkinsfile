@@ -7,7 +7,6 @@ node {
   }
 
   stage("Permissions") {
-    steps {
      parallel {
        stage("as permissions") {
           /* change directory */
@@ -22,8 +21,7 @@ node {
             /* set maven wrapper permissions */
             sh "chmod 711 ./mvnw"
           }
-       }
-     }
+       }     
     }
 
   }
