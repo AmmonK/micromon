@@ -1,10 +1,12 @@
 void theProcess(folder,image) {  
+  return {
   stage("permissions") {
     steps {
       dir(folder){
         sh "chmod 711 ./mvnw"
       }
     }
+  }
   }
 }
 
