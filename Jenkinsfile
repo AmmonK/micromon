@@ -44,7 +44,13 @@ pipeline {
          stage("DiscoveryServer") {
           agent any
           stages {
-           
+            stage("build") {
+              steps {
+                dir("DiscoveryServer") {
+                  sh "./mvnw install"
+                }
+              }
+            }
           }
         }
       }
