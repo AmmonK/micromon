@@ -12,7 +12,9 @@ void theProcess(folder,image) {
       }
     }
     stage("build") {
-      app = docker.build("ammonking/"+image)
+      dir(folder) {
+        app = docker.build("ammonking/"+image)
+      }
     }
   }
 }
