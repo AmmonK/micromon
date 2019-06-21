@@ -18,10 +18,10 @@ void theProcess(folder,image) {
     }
     stage("deploy") {
       dir(folder) {
-        docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
+        //docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
           app.push("${env.BUILD_NUMBER}")
           app.push("latest")
-       }
+       //}
       }
     }
   }
