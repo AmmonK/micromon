@@ -8,7 +8,7 @@ void theProcess(folder,image) {
     }
     stage("install") {
       dir(folder) {
-        sh "./mvnw install"
+        sh "./mvnw clean install"
       }
     }
     stage("build") {
