@@ -8,13 +8,12 @@ void theProcess(folder,image) {
     }
     stage("install") {
       dir(folder) {
-        sh "./mvnw clean install -DskipTests"
+        sh "./mvnw -T 1C install -DskipTests -offline"
       }
     }
     stage("build") {
       dir(folder) {
-        app = docker.build("ammonking/"+image)
-        echo app.id
+        app = docker.build("ammonking/"+image)        
       }
     }
     stage("deploy") {
