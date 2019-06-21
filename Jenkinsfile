@@ -1,40 +1,41 @@
-void theProcess(folder,image) {  
+// groovy language
+void theProcess(folder,image){
   def app
   script {
-    stage("permissions") {    
+    stage("permissions") {
       dir(folder){
         sh "chmod 711 ./mvnw"
-      }    
-    }
-    stage("install") {
-      dir(folder) {
-        sh "./mvnw -T 1C install -DskipTests -offline"
       }
     }
-    stage("build") {
-      dir(folder) {
-        app = docker.build("ammonking/"+image)        
+    stage("install"){
+      dir(folder){
+        sh "./mvnw -T 1C install -DskipTests"
       }
     }
-    stage("deploy") {
-      dir(folder) {
-        docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
+    stage("build"){
+      dir(folder){
+        app = docker.build("ammonking/"+image)
+      }
+    }
+    stage("deploy"){
+      dir(folder){
+        docker.withRegistry("https://registry.hub.docker.com","docker-hub-credentials") {
           app.push("${env.BUILD_NUMBER}")
           app.push("latest")
-       }
+        }
       }
     }
   }
 }
 
 pipeline {
-  agent any
-  stages {    
-    stage ('automation') {
+  agent any 
+  stages {
+    stage("automation") {
       parallel {
         stage("AdminServer") {
           steps {
-            theProcess("AdminServer","admin-server")     
+            theProcess("AdminServer","admin-server")
           }
         }
         stage("DiscoveryServer") {
@@ -52,7 +53,7 @@ pipeline {
             theProcess("TrainerService","trainer-service")
           }
         }
-      }      
-    }       
-  }
+      }
+    }
+  }  
 }
