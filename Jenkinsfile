@@ -14,11 +14,12 @@ void theProcess(folder,image) {
     stage("build") {
       dir(folder) {
         app = docker.build("ammonking/"+image)
+        echo app.id
       }
     }
     stage("deploy") {
       dir(folder) {
-        docker.withRegistry("docker.io", "docker-hub-credentials") {
+        docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
           app.push("${env.BUILD_NUMBER}")
           app.push("latest")
        }
