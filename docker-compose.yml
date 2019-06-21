@@ -5,18 +5,24 @@ services:
     image: ammonking/admin-server
     ports:
       - 9000:9000
-    networks:
-      - spring-cloud-network
   discovery-server:
     container_name: discovery-server
     image: ammonking/discovery-server
     ports:
       - 8761:8761
-    networks:
-      - spring-cloud-network
-    links:
-      - admin-server:admin-server
-
-networks:
-  spring-cloud-network:
-    driver: bridge
+    depends_on:
+      - admin-server
+  pokemon-service:
+    container_name: pokemon_service
+    image: ammonking/pokemon-service
+    ports:
+      - 8081:8080
+    depends_on:
+      - discovery-server
+  trainer-service:
+    container_name: trainer_service
+    image: ammonking/trainer-service
+    ports:
+      - 8091:8080
+    depends_on:
+      - pokemon-service
