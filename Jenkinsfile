@@ -8,7 +8,7 @@ void theProcess(folder,image) {
     }
     stage("install") {
       dir(folder) {
-        sh "./mvnw clean install"
+        sh "./mvnw clean install -DskipTests"
       }
     }
     stage("build") {
@@ -18,10 +18,10 @@ void theProcess(folder,image) {
     }
     stage("deploy") {
       dir(folder) {
-        //docker.withRegistry("https://registry.hub.docker.com", "docker-hub-credentials") {
+        docker.withRegistry("docker.io", "docker-hub-credentials") {
           app.push("${env.BUILD_NUMBER}")
           app.push("latest")
-       //}
+       }
       }
     }
   }
